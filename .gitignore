@@ -1,3 +1,4 @@
 # Ignore Env adn upload files
 .env
 uploads/*
+!uploads/.gitkeep
