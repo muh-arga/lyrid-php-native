@@ -12,9 +12,11 @@
 3. Import the database:
     Import the `database.sql` file into your MySQL database to create the necessary tables and seed data.
 
-4. Configure the environment variables:
-    - Create a copy of the `.env.example` file and rename it to `.env`.
-    - Update the database connection settings in the `.env` file with your database credentials.
+4. Set up environment variables by copying the example file and modifying it:
+    ```bash
+    cp .env.example .env
+    ```
+    Update the `.env` file with your database credentials.
 
 ## Credentials
 - Admin User:
