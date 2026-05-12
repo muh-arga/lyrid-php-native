@@ -26,3 +26,10 @@
 - Regular User:
     - username: user
     - password: user123
+
+## Note
+- If failed upload image, make sure to create `uploads` directory in the project root and set proper permissions:
+    ```bash
+    mkdir uploads
+    chmod 755 uploads
+    ```
