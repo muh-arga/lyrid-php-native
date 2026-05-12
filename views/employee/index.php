@@ -38,6 +38,12 @@ include '../layouts/header.php';
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (!$employees): ?>
+                        <tr>
+                            <td colspan="6" class="text-center">No employees found</td>
+                        </tr>
+                    <?php endif; ?>
+                    
                     <?php foreach ($employees as $employee): ?>
                         <tr>
                             <td><a href="detail.php?id=<?= $employee['id'] ?>"><?= $employee['id'] ?></a></td>

@@ -39,6 +39,12 @@ include '../layouts/header.php';
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if (!$users): ?>
+                        <tr>
+                            <td colspan="5" class="text-center">No users found</td>
+                        </tr>
+                    <?php endif; ?>
+
                     <?php foreach ($users as $user): ?>
                         <tr>
                             <td><a href="detail.php?id=<?= $user['id'] ?>"><?= $user['id'] ?></a></td>
