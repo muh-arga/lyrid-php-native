@@ -8,12 +8,17 @@ onlyAdmin();
 $title = 'User - Index';
 $currentPage = 'user';
 
-$stmt = $pdo->query("
+$search = $_GET['q'] ?? '';
+
+$stmt = $pdo->prepare("
     SELECT id, name, username, role
     FROM users
+    WHERE name LIKE :search OR username LIKE :search
     ORDER BY id DESC
 ");
 
+$stmt->bindValue(':search', "%$search%");
+$stmt->execute();
 $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 include '../layouts/header.php';
@@ -27,6 +32,18 @@ include '../layouts/header.php';
 
 <div class="section-body">
     <div class="card">
+        <form action="" method="GET">
+            <div class="card-header">
+                <h4>Search</h4>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name or username" value="<?= $_GET['q'] ?? '' ?>">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
         <div class="card-body table-responsive">
             <table class="table">
                 <thead>

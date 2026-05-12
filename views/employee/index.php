@@ -6,11 +6,16 @@ require_once dirname(__DIR__, 2) . '/config/database.php';
 $title = 'Employee - Index';
 $currentPage = 'employee';
 
-$stmt = $pdo->query("
+$search = $_GET['q'] ?? '';
+
+$stmt = $pdo->prepare("
     SELECT id, name, email, phone, address, photo
     FROM employees
+    WHERE name LIKE :search OR email LIKE :search
     ORDER BY id DESC
 ");
+$stmt->bindValue(':search', "%$search%");
+$stmt->execute();
 
 $employees = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -25,6 +30,18 @@ include '../layouts/header.php';
 
 <div class="section-body">
     <div class="card">
+        <form action="" method="GET">
+            <div class="card-header">
+                <h4>Search</h4>
+            </div>
+            <div class="card-body">
+                <div class="input-group mb-3">
+                    <input type="text" name="q" class="form-control" placeholder="Search by name or email" value="<?= $_GET['q'] ?? '' ?>">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </div>
+        </form>
+
         <div class="card-body table-responsive">
             <table class="table">
                 <thead>
