@@ -118,8 +118,8 @@ include '../layouts/header.php';
                 <div class="mb-3">
                     <label>Role</label>
                     <select name="role" class="form-control">
-                        <option value="admin">Admin</option>
-                        <option value="user">User</option>
+                        <option value="admin" <?= $user['role'] === 'admin' ? 'selected' : '' ?>>Admin</option>
+                        <option value="user" <?= $user['role'] === 'user' ? 'selected' : '' ?>>User</option>
                     </select>
                 </div>
                 <button class="btn btn-primary">Save</button>
